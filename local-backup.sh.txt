@@ -1,0 +1,48 @@
+Plano de backup regular
+Diário
+
+FILE=backup.sql.`date +"%2020%07%08"`
+DBSERVER=127.0.0.1:3306
+DATABASE=uc4atividades
+USER=root
+PASS=C14825927rds
+unalias rm 2> /dev/null
+
+rm ${FILE} 2> /dev/null
+rm ${FILE}.gz 2> /dev/null
+mysqldump --opt --user=${USER} --password=${PASS} ${DATABASE} > ${FILE}
+gzip $FILE
+echo "${FILE}.gz was created:"
+ls -l ${FILE}.gz
+//pasta
+mkdir -p /backup/mysql
+cd /backup/mysql
+chmod +x /backup/mysql/local-backup.sh
+
+meia noite
+Agendamento
+crontab -e
+0 1 * * * /backup/mysql/local-backup.sh 1>> /var/log/mysqlbackup.log 2>>/var/log/mysqlbackup-error.log
+
+Semanalmente
+FILE=backup.sql.`date +"%2020%07%08"`
+DBSERVER=127.0.0.1:3306
+DATABASE=uc4atividades
+USER=root
+PASS=C14825927rds
+unalias rm 2> /dev/null
+
+rm ${FILE} 2> /dev/null
+rm ${FILE}.gz 2> /dev/null
+mysqldump --opt --user=${USER} --password=${PASS} ${DATABASE} > ${FILE}
+gzip $FILE
+echo "${FILE}.gz was created:"
+ls -l ${FILE}.gz
+//pasta
+mkdir -p /backup/mysql
+cd /backup/mysql
+chmod +x /backup/mysql/local-backup.sh
+
+Agendamento
+0 1 7 * * /backup/mysql/local-backup.sh 1>> /var/log/mysqlbackup.log 2>>/var/log/mysqlbackup-error.log
+

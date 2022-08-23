@@ -1,0 +1,15 @@
+use uc4atividades;
+select * from usuario;
+alter table usuario modify senha varbinary(100);
+update usuario set senha=aes_decrypt('48616','mda_@') where id=1;
+update usuario set senha=aes_decrypt('67890','sei_@c') where id=2;
+update usuario set senha=aes_decrypt('1q2w3e','pr.qwt') where id=3;
+update usuario set senha=aes_decrypt('sil123','dw_kj') where id=4;
+update usuario set senha=aes_decrypt('ama123','ab_hj') where id=5;
+update usuario set senha=aes_decrypt('mar123','m65334') where id=6;
+update usuario set senha=aes_decrypt('dom123','djkl') where id=7;
+update usuario set senha=aes_decrypt('mar123','qwer') where id=8;
+update usuario set senha=aes_decrypt('joa123','iooe') where id=9;
+update usuario set senha=aes_decrypt('apa123','edcs') where id=10;
+update usuario set senha=aes_decrypt('fil123','wert') where id=11;
+update usuario set senha=aes_decrypt(senha,'kjhki') where id=12;
